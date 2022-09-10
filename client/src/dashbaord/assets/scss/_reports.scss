@@ -1,0 +1,54 @@
+.reports-dashboard {
+  background: #fef7dc !important;
+  box-shadow: 0 6px 12px rgb(140 152 164 / 8%);
+  
+  .media {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    .media-body {
+      -ms-flex: 1;
+      flex: 1;
+      .subtitle {
+        display: block;
+        color: #8c98a4;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .03125rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        
+    } .card-title {
+        display: block;
+        color: #1e2022;
+        margin-bottom: 0;
+    }
+   
+    }
+
+    .icon.icon-sm {
+        font-size: 0.98438rem;
+        width: 2.1875rem;
+        height: 2.1875rem;
+        background: #ddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+  }
+}
+
+.column-divider {
+    position: relative;
+}
+
+.column-divider::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-left: 0.0625rem solid #e7eaf3;
+    content: "";
+}

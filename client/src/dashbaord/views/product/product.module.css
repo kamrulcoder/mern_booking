@@ -1,0 +1,35 @@
+.table_status {
+    padding: 10px;
+    border: 1px solid;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table_status span {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #bdc5d1;
+    border-radius: 50%;
+    margin-right: 0.4375rem;
+    background-color: #00c9a7!important;
+}
+
+
+.action_buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.action_buttons button {
+    margin: 0 5px;
+}
+
+.switch_button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
