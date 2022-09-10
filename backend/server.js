@@ -8,6 +8,12 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
 
+import authRoute  from "./routes/auth.js";
+import usersRoute from "./routes/user.js"
+import hotelsRoute from "./routes/hotels.js";
+import roomsRoute from "./routes/rooms.js";
+
+
 app.get('/',(req,res)=>{
     res.send('server is running')
 })
@@ -26,32 +32,47 @@ app.use(cors({
     credentials : true
 }));
 
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
+
+
+
+// api route declaire 
+app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/hotels", hotelsRoute);
+app.use("/api/rooms", roomsRoute);
+
+
+
+
 // Running server   create function  on Port 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 5000
+
+const uri = "mongodb://0.0.0.0:27017/booking";
 
 // mongoose with database connected 
-// mongoose
-//   .connect(process.env.DB_URL, {
-//     useNewUrlParser:true
-//   })
-//   .then(console.log("Connected to MongoDB"))
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(uri, {
+    useNewUrlParser:true
+  })
+  .then(console.log("Connected to MongoDB"))
+  .catch((err) => console.log(err));
 
-const connect = async () => {
-    try {
-      await mongoose.connect(process.env.DB_URL);
-      console.log("Connected to mongoDB.");
-    } catch (error) {
-      throw error;
+
+
+app.listen(PORT,(error)=>{
+    if(!error){
+        console.log(`server is running port  ${PORT}`);
     }
-  };
-  
-  mongoose.connection.on("disconnected", () => {
-    console.log("mongoDB disconnected!");
-  });
+})
 
-
-  app.listen(8800, () => {
-    connect();
-    console.log("Connected to backend.");
-  });
